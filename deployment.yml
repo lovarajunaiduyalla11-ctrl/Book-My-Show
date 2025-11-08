@@ -14,16 +14,10 @@ spec:
       labels:
         app: bms
     spec:
+      imagePullSecrets:
+        - name: docker-cred   # 👈 Add this line
       containers:
-      - name: bms-container
-        image: lova1254/bms:latest  # Matches your Jenkins Docker push
-        ports:
-        - containerPort: 3000
-        imagePullPolicy: Always
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
+        - name: bms-container
+          image: lova1254/bms:latest
+          ports:
+            - containerPort: 3000
